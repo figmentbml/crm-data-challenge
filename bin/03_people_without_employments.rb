@@ -1,11 +1,15 @@
 require_relative '../data/crm.rb'
 require 'pp'
 
-result = []
+array = []
 CRM[:people].each do |person|
-  person[:employments].each do |employment|
-    result << employment[:title]
+  if person[:employments].empty?
+    hash = {}
+    hash[:id] = person[:id]
+    hash[:first_name] = person[:first_name]
+    hash[:last_name] = person[:last_name]
+    array << hash
   end
 end
-result
-pp result
+
+pp array
